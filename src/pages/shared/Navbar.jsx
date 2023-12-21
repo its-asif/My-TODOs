@@ -19,8 +19,8 @@ const Navbar = () => {
 
     return (
         <div>
-            <div class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm mb-4">
-            <nav class="mt-6 relative max-w-[85rem] w-full bg-white border border-gray-200 rounded-[36px] mx-2 py-3 px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto dark:bg-gray-800 dark:border-gray-700" aria-label="Global">
+            <div class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
+            <nav class="mt-3 relative max-w-[85rem] w-full bg-white border border-gray-200 rounded-[36px] mx-2  px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto dark:bg-gray-800 dark:border-gray-700" aria-label="Global">
             <div className="navbar bg-base-100 h-10">
                 <div className="navbar-start">
                     <div className="dropdown">

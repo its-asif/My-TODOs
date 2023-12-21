@@ -1,9 +1,10 @@
+import Banner from "./banner/Banner";
 
 
 const Home = () => {
     return (
         <div className="min-h-[100vh]">
-            This is home page
+            <Banner/>
         </div>
     );
 };
