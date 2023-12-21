@@ -2,7 +2,7 @@
 
 const Home = () => {
     return (
-        <div>
+        <div className="min-h-[100vh]">
             This is home page
         </div>
     );
