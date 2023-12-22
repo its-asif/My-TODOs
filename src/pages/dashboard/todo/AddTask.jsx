@@ -11,7 +11,7 @@ const AddTask = ({ onAddTask }) => {
     // Fetch existing tasks for the user
     const fetchTasks = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/todo-lists/tasks`, {
+        const response = await fetch(`https://taskflow-azure.vercel.app/todo-lists/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const AddTask = ({ onAddTask }) => {
         const newTask = content.trim();
         const updatedTasks = [...existingTasks, newTask];
   
-        const response = await fetch(`http://localhost:8000/todo-lists/tasks`, {
+        const response = await fetch(`https://taskflow-azure.vercel.app/todo-lists/tasks`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

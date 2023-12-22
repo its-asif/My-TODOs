@@ -27,7 +27,7 @@ const Login = () => {
   
             const newUser = { name : displayName, email, photoURL, job: "", isAdmin: false, uid: user.uid}
             // const newUser = {email, createdAt : createdAt, myCart: [], appliedJobs: [], myJobs: [], displayName, photoURL};
-            fetch('http://localhost:8000/users', {
+            fetch('https://taskflow-azure.vercel.app/users', {
                 method: 'POST',
                 headers:{
                     'content-type': 'application/json'
