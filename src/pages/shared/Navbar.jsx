@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
+    const {user, logout, loading} = useContext(AuthContext);
+    console.log(user);
+
+    const handleLogout = () => {
+        logout()
+            .then( () => {})
+            .catch( error => console.log(error))
+    }
+
     const navs = <>
         <li><Link className='hover:text-blue-600' to="/">Home</Link></li>
-        <li><Link className='hover:text-blue-600' to="/dashboard">Dashboard</Link></li>
+        {
+            user?
+            <li><Link className='hover:text-blue-600' to="/dashboard">Dashboard</Link></li>
+            :
+            <li><Link className='hover:text-blue-600' to="/register">Register</Link></li>
+        }
         {/* <li>
             <details>
             <summary>Parent</summary>
@@ -19,8 +34,8 @@ const Navbar = () => {
 
     return (
         <div>
-            <div class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
-            <nav class="mt-3 relative max-w-[85rem] w-full bg-white border border-gray-200 rounded-[36px] mx-2  px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto dark:bg-gray-800 dark:border-gray-700" aria-label="Global">
+            <div className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
+            <nav className="mt-3 relative max-w-[85rem] w-full bg-white border border-gray-200 rounded-[36px] mx-2  px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto dark:bg-gray-800 dark:border-gray-700" aria-label="Global">
             <div className="navbar bg-base-100 h-10">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -38,13 +53,37 @@ const Navbar = () => {
                     {navs}
                     </ul>
                 </div>
+
+
+                {/* end section */}
                 <div className="navbar-end">
-                <a class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500" href="#">
-                <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                </svg>
-                Log in
-                </a>
+                    {/* profile */}
+                    { user &&
+                        <div className="dropdown dropdown-end mr-3">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                            </div>
+                        </div>
+                        <ul tabIndex={0} className="px-3 mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                            <li className='font-bold'>{user.displayName}</li>
+                            <li >{user.email}</li>
+                            {/* <li><a>Logout</a></li> */}
+                        </ul>
+                    </div>}
+
+                    {/* login-logout btn */}
+                    <a className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500" href="#">
+                    { !user && <svg className="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>}
+                        {
+                            user?.email ? 
+                            <Link to="/" onClick={handleLogout}>Logout</Link>
+                            :
+                            <Link to="/login">Log in</Link>
+                        }
+                    </a>
                 </div>
                 </div>
             </nav>
