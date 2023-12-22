@@ -1,10 +1,11 @@
+import Profile from "./profile/Profile";
 import TodoList from "./todo/TodoList";
 
 
 const Dashboard = () => {
     return (
         <div>
-            This is Dashboard page
+            <Profile/>
             <TodoList/>
         </div>
     );

@@ -16,9 +16,9 @@ const Column = ({ title, tasks, onAddTask, onMoveTask }) => {
     >
       <h3>{title}</h3>
       {tasks.map((task) => (
-        <Task key={task.id} id={task.id} content={task.content} />
+        task && <Task key={task.id} id={task.id} content={task.content} />
       ))}
-      <AddTask onAddTask={(content) => onAddTask(content, title)} />
+      { title == "ToDo" && <AddTask onAddTask={(content) => onAddTask(content, title)} />}
     </div>
   );
 };

@@ -24,7 +24,9 @@ const Login = () => {
             const user = result.user;
             const {displayName, photoURL, email} = user;
             const createdAt = user?.metadata?.creationTime;
-            const newUser = {email, createdAt : createdAt, myCart: [], appliedJobs: [], myJobs: [], displayName, photoURL};
+  
+            const newUser = { name : displayName, email, photoURL, job: "", isAdmin: false, uid: user.uid}
+            // const newUser = {email, createdAt : createdAt, myCart: [], appliedJobs: [], myJobs: [], displayName, photoURL};
             fetch('http://localhost:8000/users', {
                 method: 'POST',
                 headers:{
@@ -74,7 +76,7 @@ const Login = () => {
     return (
         <div className="hero min-h-screen bg-base-200">
         <Helmet>
-            <title>fooDie | Login</title>
+            <title>TaskFlow | Login</title>
         </Helmet>
         <div className="hero-content w-1/2 flex-col">
             <div className="text-center md:w-full lg:text-left">
